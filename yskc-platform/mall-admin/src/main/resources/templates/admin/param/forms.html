@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>数据编辑</title>
+    <script src="/js/jquery-1.9.1.min.js"></script>
+    <link href="/plug/layui-v2.4.3/css/layui.css" rel="stylesheet" type="text/css">
+    <script src="/plug/layui-v2.4.3/layui.js"></script>
+    <link href="/plug/weui-1.1.3/weui.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/admin/form.css" rel="stylesheet" type="text/css">
+    <!--<script src="/js/admin/form.js"></script>-->
+
+    <script th:inline="javascript">
+        function formSubmitInit() {//该方法可定义也可不定义,不定则默认使用第一个Form表单
+            return {
+                id: "inputForm",//不定则默认使用第一个Form表单
+                action: "/api/admin/save/param/edit",//不定则默认使用第一个Form表单的action
+                method: "post", //不定则默认使用第一个Form表单的method
+                customValidFun:function(){
+                    if($('#sel1').val().length==0) {
+                        window.parent.layer.msg("请选择类型", {icon: 2});
+                        return false;
+                    }
+                },saveOkFun: function (parentHtml, retData) {//retData为ajax调用返回的数据
+                    parentHtml.find('body').trigger('page.reload');//触发查询按钮，刷新上级页面的列表
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+<div class="layui-row">
+    <form id="inputForm" class="layui-form" action="javascript:;">
+        <input type="hidden" name="id" th:value="${entity.id}">
+        <div class="layui-form-item">
+            <label class="layui-form-label">类型</label>
+            <div class="layui-input-block">
+                <div style="width: 200px;display: inline-block">
+                    <select id="sel1" name="types">
+                        <option value="">请选择</option>
+                        <option value="dan">单选</option>
+                        <option value="duo">多选</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">题目</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" th:value="${entity.title}" placeholder="请输入参数"
+                       class="layui-input required" maxlength="50" style="width: 500px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序</label>
+            <div class="layui-input-block">
+                <input type="text" name="px" placeholder="请输入参数" th:value="${entity.px}"
+                       class="layui-input required number" style="width: 300px;">
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use('form', function(){
+        var form = layui.form;
+    });
+</script>
+</body>
+</html>

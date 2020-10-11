@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:fragment="head">
+        <!--<meta http-equiv="X-UA-Compatible" content="IE=edge"/>-->
+        <!--<meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,width=device-width"/>-->
+        <script src="/js/jquery-1.9.1.min.js"></script>
+        <link href="/plug/layui-v2.4.3/css/layui.css" rel="stylesheet" type="text/css">
+        <script src="/plug/layui-v2.4.3/layui.js"></script>
+        <script src="/js/common.js"></script>
+        <link href="/css/common.css" rel="stylesheet" type="text/css">
+    </th:block>
+</head>
+<body>
+<th:block th:fragment="headMain(advid)">
+    <div class="main1200 headers">
+        <div class="logo"><a href="/"><img src="http://www.1ydt.com/image/biaotou.jpg"></a></div>
+        <div class="header1" th:utext="${#ydtUtil.findAdverts(advid)}"><img src="http://www.1ydt.com/image/biaotou.jpg"></div>
+        <div class="header2">
+            <div id="userinfoDiv">
+                <div class="touxiang"><img src="/image/user.png"></div>
+                <div class="info">
+                    <div class="nick">登录/注册</div>
+                    <i class="layui-icon layui-icon-down" style="display: none"></i>
+                </div>
+            </div>
+            <div id="usermoreDiv" class="layui-anim layui-anim-upbit">
+                <ul>
+                    <!--<li><a href="">产品</a></li>-->
+                    <!--<li><a href="">产品</a></li>-->
+                    <li><a href="/user/recharge">充值</a></li>
+                    <li><a href="javascript:logoutFun()">退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</th:block>
+<th:block th:fragment="footer">
+    <footer class="footers">
+        <p><a href="http://bbt.1ydt.com/">班班通教学资源网</a> 2018 © <a href="http://www.1ydt.com/">1ydt.com</a><span th:utext="${#ydtUtil.findAdverts(23)}"></span></p>
+        <p><a href="http://www.1ydt.com/" target="_blank">一点通教学网</a> <a href="http://www.1ydt.cn/" target="_blank">班班通教学系统</a></p>
+        <p><img src="/image/qrcode.png" class="qrcode"></p>
+    </footer>
+</th:block>
+</body>
+</html>

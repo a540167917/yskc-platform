@@ -1,0 +1,85 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <div class="cont-header">
+        <div class="layui-card">
+            <div class="layui-card-header">用户管理 <span style="color: red" th:text="'（总数：'+${page.total}+'个）'"></span></div>
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="javascript:loadPage('/adm/evaluate/merchant/list');">所有评价</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="javascript:loadPage('/adm/evaluate/merchant/listOn?evaluateState=2');">好评</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="javascript:loadPage('/adm/evaluate/merchant/listOn?evaluateState=1');">中评</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="javascript:loadPage('/adm/evaluate/merchant/listOn?evaluateState=0');">差评</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cont-main">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>用户名</th>
+                            <th>用户照片</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="item:${page.records}">
+                            <tr>
+                                <td th:text="${item.id}"></td>
+                                <td th:text="${item.name}"></td>
+                                <td th:text="${item.picture}"></td>
+                                <td th:if="${item.evaluateState==0}">差评</td>
+                                <td th:if="${item.evaluateState==1}">中评</td>
+                                <td th:if="${item.evaluateState==2}">好评</td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                    <div id="pageDiv"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        layui.use('laypage', function(){
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'pageDiv' //注意，这里的 test1 是 ID，不用加 # 号
+                ,curr: [[${page.current}]]
+                ,limit: [[${page.size}]]
+                ,count: [[${page.total}]] //数据总数，从服务端得到
+                ,jump:function (obj, first) {
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //首次不执行
+                    if(!first){
+                        refreshPages({offset:obj.curr});
+                    }
+                }
+            });
+        });
+        function resetPass(uid) {
+            layer.confirm('你确定要重置密码为（123456）吗！？',function () {
+                $.ajax({
+                    url:'/api/admin/save/user/reset-pass',
+                    type:'post',
+                    dataType:'json',
+                    data:{id:uid},
+                    success:function (json) {
+                        layer.msg('重置成功(密码：123456)',{icon:1});
+                    },error:function (req) {
+                        layer.msg('服务器出错',{icon:0});
+                    }
+                });
+            });
+        }
+    </script>
+</div>

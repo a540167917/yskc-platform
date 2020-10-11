@@ -1,0 +1,108 @@
+<script src="/js/admin/dialogs.js"></script>
+<script src="/js/admin/webload.js"></script>
+<div xmlns:th="http://www.thymeleaf.org">
+    <div class="cont-header">
+        <div class="layui-card">
+            <div class="layui-card-header">用户管理 <span style="color: red" th:text="'（总数：'+${page.total}+'个）'"></span></div>
+            <div class="layui-card-body">
+                <!--<div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="javascript:loadPage('/adm/order/merchant/list');">所有订单</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="javascript:loadPage('/adm/order/merchant/listOn?orderState=1');">未支付</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="javascript:loadPage('/adm/order/merchant/listOn?orderState=2');">待评价</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="javascript:loadPage('/adm/order/merchant/listOn?orderState=3');">交易完成</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="javascript:loadPage('/adm/order/merchant/listOn?orderState=4');">退款</button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+    <div class="cont-main">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th>订单号</th>
+                            <th>客户名称</th>
+                            <th>联系电话</th>
+                            <th>订单时间</th>
+                            <th>桌号</th>
+                            <th>所属门店</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="item:${page.records}">
+                            <tr>
+                                <td th:text="${item.orderNumber}"></td>
+                                <td th:text="${item.clientName}"></td>
+                                <td th:text="${item.connectionMessage}"></td>
+                                <td th:text="${#dates.format(item.createDate,'yyyy-MM-dd  HH:mm:ss')}"></td>
+                                <td th:text="${item.tableNumber}"></td>
+                                <td th:text="${item.storeMerchantId}"></td>
+                                <td style="text-align: center">
+                                    <div class="tpl-table-black-operation layui-btn-group">
+                                        <button th:onclick="'update(\'/api/admin/save/orderNew/edit?id='+${item.id}+'\');'" class="layui-btn layui-btn-sm layui-btn-primary">
+                                            <i class="layui-icon layui-icon-edit"></i>确认定单</button>
+                                        <button  th:onclick="'update(\'/api/admin/save/orderNew/del?id='+${item.id}+'\');'" class="layui-btn layui-btn-sm layui-btn-primary">
+                                            <i class="layui-icon layui-icon-delete"></i>删除订单</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                    <div id="pageDiv"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        function update(url){
+            $.ajax({
+                url: url,
+                type: "get",
+                success: function (obj) {
+                    loadPage('/adm/order/merchant/orderNewlist');
+                }
+            });
+        }
+        layui.use('laypage', function(){
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'pageDiv' //注意，这里的 test1 是 ID，不用加 # 号
+                ,curr: [[${page.current}]]
+                ,limit: [[${page.size}]]
+                ,count: [[${page.total}]] //数据总数，从服务端得到
+                ,jump:function (obj, first) {
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //首次不执行
+                    if(!first){
+                        refreshPages({offset:obj.curr});
+                    }
+                }
+            });
+        });
+        function resetPass(uid) {
+            layer.confirm('你确定要重置密码为（123456）吗！？',function () {
+                $.ajax({
+                    url:'/api/admin/save/user/reset-pass',
+                    type:'post',
+                    dataType:'json',
+                    data:{id:uid},
+                    success:function (json) {
+                        layer.msg('重置成功(密码：123456)',{icon:1});
+                    },error:function (req) {
+                        layer.msg('服务器出错',{icon:0});
+                    }
+                });
+            });
+        }
+    </script>
+</div>

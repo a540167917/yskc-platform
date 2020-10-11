@@ -1,0 +1,125 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <div class="cont-header">
+        <div class="layui-card">
+            <div class="layui-card-header">用户管理 <span style="color: red" th:text="'（总数：'+${page.total}+'个）'"></span></div>
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="javascript:loadPage('/adm/order/merchant/orderParticularlist');">所有订单</button>
+                        <select name="orderformstate" th:value="1" class="layui-btn layui-btn-sm layui-btn-warm" onchange="javascript:orderState12('/adm/order/merchant/listTh');">
+                            <option value="">支付状态</option>
+                            <option value="0" th:selected="${orderState.orderformstate==0}">未支付</option>
+                            <option value="1" th:selected="${orderState.orderformstate==1}">已支付</option>
+                        </select>
+                        <select name="orderState" class="layui-btn layui-btn-sm layui-btn-warm" onchange="javascript:orderState12('/adm/order/merchant/listTh');">
+                            <option value="">处理状态</option>
+                            <option value="0" th:selected="${orderState.orderState==0}">已完成</option>
+                            <option value="1" th:selected="${orderState.orderState==1}">已取消</option>
+                            <option value="2" th:selected="${orderState.orderState==2}">待处理</option>
+                        </select>
+                        <select name="orderNewstate" class="layui-btn layui-btn-sm layui-btn-warm" onchange="javascript:orderState12('/adm/order/merchant/listTh');">
+                            <option value="">订单状态</option>
+                            <option value="0" th:selected="${orderState.orderNewstate==0}">新订单</option>
+                            <option value="1" th:selected="${orderState.orderNewstate==1}">非新订单</option>
+                        </select>
+                        <select name="evaluateState" class="layui-btn layui-btn-sm layui-btn-warm" onchange="javascript:orderState12('/adm/order/merchant/listTh');">
+                            <option value="">评价状态</option>
+                            <option value="0" th:selected="${orderState.evaluateState==0}">差评</option>
+                            <option value="1" th:selected="${orderState.evaluateState==1}">中评</option>
+                            <option value="2" th:selected="${orderState.evaluateState==2}">好评</option>
+                            <option value="3" th:selected="${orderState.evaluateState==3}">待评价</option>
+                        </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cont-main">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th>订单号</th>
+                            <th>店铺名字</th>
+                            <th>支付状态</th>
+                            <th>处理状态</th>
+                            <th>订单状态</th>
+                            <th>评价状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="item:${array}">
+                            <tr>
+                                <td th:text="${item.orderForm.orderNumber}"></td>
+                                <td th:text="${item.merchant.name}"></td>
+                                <td th:text="${item.orderState.orderformstate==0}?'未支付':'已支付'"></td>
+                                <td th:if="${item.orderState.orderState==0}">已完成</td>
+                                <td th:if="${item.orderState.orderState==1}">已取消</td>
+                                <td th:if="${item.orderState.orderState>=2}">待处理</td>
+                                <td th:text="${item.orderState.orderNewstate==0}?'新订单':'非新订单'"></td>
+                                <td th:if="${item.orderState.evaluateState==0}">差评</td>
+                                <td th:if="${item.orderState.evaluateState==1}">中评</td>
+                                <td th:if="${item.orderState.evaluateState==2}">好评</td>
+                                <td th:if="${item.orderState.evaluateState>=3}">待评价</td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                    <div id="pageDiv"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            $('option[value=${orderformstate}]').attr("selected",true);
+            $('option[value=${orderState}]').attr("selected",true);
+            $('option[value=${orderNewstate}]').attr("selected",true);
+            $('option[value=${evaluateState}]').attr("selected",true);
+        })
+            function orderState12(url){
+            var orderformstate = $("select[name='orderformstate']").val()
+            var orderState = $("select[name='orderState']").val()
+            var orderNewstate = $("select[name='orderNewstate']").val()
+            var evaluateState = $("select[name='evaluateState']").val()
+            loadPages(url,{'orderformstate':orderformstate,'orderState':orderState,'orderNewstate':orderNewstate,'evaluateState':evaluateState});
+        }
+        layui.use('laypage', function(){
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'pageDiv' //注意，这里的 test1 是 ID，不用加 # 号
+                ,curr: [[${page.current}]]
+                ,limit: [[${page.size}]]
+                ,count: [[${page.total}]] //数据总数，从服务端得到
+                ,jump:function (obj, first) {
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //首次不执行
+                    if(!first){
+                        refreshPages({offset:obj.curr});
+                    }
+                }
+            });
+        });
+        function resetPass(uid) {
+            layer.confirm('你确定要重置密码为（123456）吗！？',function () {
+                $.ajax({
+                    url:'/api/admin/save/user/reset-pass',
+                    type:'post',
+                    dataType:'json',
+                    data:{id:uid},
+                    success:function (json) {
+                        layer.msg('重置成功(密码：123456)',{icon:1});
+                    },error:function (req) {
+                        layer.msg('服务器出错',{icon:0});
+                    }
+                });
+            });
+        }
+    </script>
+</div>

@@ -1,0 +1,32 @@
+http://127.0.0.1:9900/swagger-ui.html
+
+
+1.位置上传 /getFoodList  --杨鹏飞
+
+	通过经纬度/位置返回距离用户最近的店铺
+	返回列表：格式数组[{				
+	    id:1,
+            img:"/images/img2.png",
+            name:"洋果子",
+            info:"fdsdsbdfnrtn",
+            price:"14",
+            distance:"1.4"
+},{}.....]
+
+2.搜索 /searchFoodList  --张古良
+
+	类型post
+	通过用户搜索内容返回搜索到的结果，格式[{
+	    id:1,
+            img:"/images/img2.png",
+            name:"洋果子",
+            info:"fdsdsbdfnrtn",
+            price:"14",
+            distance:"1.4"
+},{}.....]
+
+3.轮播图 /getSlideshow   --张亮
+
+	通过用户位置获得附近的店铺，返回格式数组[{ storeId:1,imgUrl:""},{}.....]
+
+

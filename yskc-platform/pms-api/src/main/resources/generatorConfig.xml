@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1">
+  <!-- 配置生成pojo的序列化的插件，mybatis支持很多插件，这些插件都在 org.mybatis.generator.plugins包下  -->
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+    <!-- 配置生成pojo的toString()方法的插件，mybatis支持很多插件，这些插件都在 org.mybatis.generator.plugins包下 -->
+     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+     
+    <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+     </commentGenerator>
+       <!--数据库配置-->
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/db_mall_ekuai?serverTimezone=UTC" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
+    <!-- 模型生成包名-->
+    <javaModelGenerator targetPackage="com.yskc.pms.entity" targetProject="src/main/java" />
+   <!-- mybatis的映射.xml-->
+        <sqlMapGenerator targetPackage="com.yskc.pms.mapper"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+    <!-- mybatis 的mapper接口生成的包路径-->
+    <javaClientGenerator targetPackage="com.yskc.pms.mapper" targetProject="src/main/java" type="XMLMAPPER" />
+    <!-- 配置生成表的模型-->
+<!--    <table tableName="pms_chat_control_record" domainObjectName="PmsChatControlRecord"/>-->
+<!--    <table tableName="pms_group_management" domainObjectName="PmsGroupManagement"/>-->
+<!--    <table tableName="pms_chat_record" domainObjectName="PmsChatRecord"/>-->
+<!--    <table tableName="pms_video_control_record" domainObjectName="PmsVideoControlRecord"/>-->
+<!--    <table tableName="pms_outside_even_link" domainObjectName="PmsOutsideEvenLink"/>-->
+<!--    <table tableName="pms_history_push" domainObjectName="PmsHistoryPush"/>-->
+<!--    <table tableName="pms_live_record" domainObjectName="PmsLiveRecord"/>-->
+<!--    <table tableName="pms_recorded_record" domainObjectName="PmsRecordedRecord"/>-->
+    <table tableName="pms_breaking_records" domainObjectName="PmsBreakingRecords"/>
+    <table tableName="pms_demand_records" domainObjectName="PmsDemandRecords"/>
+  </context>
+</generatorConfiguration>

@@ -1,0 +1,99 @@
+<style>
+    .contents{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+   .picture img:hover{
+       cursor: pointer;
+       transition: all 0.6s;
+       transform: scale(1.9);
+   }
+</style>
+<script>
+    function everyWorkFun() {
+        $.getJSON('/api/admin/common/wxs/everyWork',null,function () {
+            layer.msg('执行成功!');
+        })
+    }
+</script>
+<div xmlns:th="http://www.thymeleaf.org">
+    <div class="cont-header">
+        <div class="layui-card">
+            <div class="layui-card-header">参数管理</div>
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm layui-btn-normal" onclick="openDialogForm('参数添加','/adm/stort/merchant/addform','1000px','500px');">新建</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-warm" onclick="everyWorkFun()">执行一次返点计算</button>
+                    <button class="layui-btn layui-btn-sm layui-btn-danger">警告按钮</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cont-main">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-btn-container">
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th style="width: 13%">店铺名字</th>
+                            <th style="width: 13%">店铺照片</th>
+                            <th style="width: 11%">营业时间</th>
+                            <th style="width: 14%">营业状态</th>
+                            <th style="width: 10%">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <th:block th:each="item:${page.records}">
+                            <tr>
+                                <td th:text="${item.name}"></td>
+                                <td class="picture">
+                                    <img th:src="${item.picture}" width="100px" height="100px"/>
+                                </td>
+                                <td th:text="${item.wechatId}"></td>
+                                <td th:text="${item.state==0}?'离线状态':'运行状态'"></td>
+                                <td style="text-align: center">
+                                    <div class="tpl-table-black-operation layui-btn-group">
+                                        <button th:onclick="'openDialogForm(\'参数修改\',\'/adm/stort/merchant/updateform?id='+${item.id}+'\',\'1000px\',\'500px\');'" class="layui-btn layui-btn-sm layui-btn-primary">
+                                            <i class="layui-icon layui-icon-edit"></i>修改</button>
+                                        <button  th:onclick="'dels(\'/api/admin/save/store/del?id='+${item.id}+'\');'" class="layui-btn layui-btn-sm layui-btn-primary">
+                                            <i class="layui-icon layui-icon-delete"></i>删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </th:block>
+                        </tbody>
+                    </table>
+                    <div id="pageDiv"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        layui.use('laypage', function(){
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'pageDiv' //注意，这里的 test1 是 ID，不用加 # 号
+                ,curr: [[${page.current}]]
+                ,limit: [[${page.size}]]
+                ,count: [[${page.total}]] //数据总数，从服务端得到
+                ,jump:function (obj, first) {
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //首次不执行
+                    if(!first){
+                        refreshPages({offset:obj.curr});
+                    }
+                }
+            });
+        });
+    </script>
+</div>

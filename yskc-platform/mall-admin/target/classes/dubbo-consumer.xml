@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://code.alibabatech.com/schema/dubbo
+            http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:application name="mall-admin" />
+
+	<dubbo:registry id="ums-service" address="${zk.url}" check="false" />
+	<dubbo:registry id="pms-service" address="${zk.url}" check="false" />
+	<dubbo:registry id="oms-service" address="${zk.url}" check="false" />
+
+	<!-- pms提供服务接口 -->
+	<dubbo:reference registry="pms-service" interface="com.zscat.core.server.PmsChatService" id="pmsChatService" check="false" />
+	<dubbo:reference registry="pms-service" interface="com.zscat.core.server.PmsVideoService" id="pmsVideoService" check="false" />
+	<dubbo:reference registry="pms-service" interface="com.zscat.core.server.PmsMessageManagementService" id="pmsMessageManagementService" check="false" />
+
+
+</beans>

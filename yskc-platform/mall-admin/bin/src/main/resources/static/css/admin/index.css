@@ -1,0 +1,76 @@
+body{
+    background-color: #f2f2f2;
+}
+.ruis-main{
+    display: flex;
+    flex-direction: column;
+    margin-left: 200px;
+}
+
+.layui-logo{
+    background-color: #20222A !important;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1002;
+    width: 200px;
+    height: 49px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-weight: 300;
+    background-repeat: no-repeat;
+    background-position: center center;
+    line-height: 50px;
+    color: #fff;
+    text-align: center;
+}
+
+.ruis-headers li{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.ruis-headers .iconbtn{
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+#daohangList{
+    height: 100%;
+    margin-top: 45px;
+}
+.ruis-headers{
+    color: black;
+    background-color: #ffffff !important;
+    border-bottom: 1px solid grey;
+}
+.ruis-headers a{
+    color: black !important;;
+}
+#mainContent{
+    margin: 15px;
+    flex: 1;
+}
+
+.ruis-searchtxt{
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    width: 350px;
+    /*border-bottom: 1px !important;*/
+}
+.ruis-searchi{
+    position: absolute;
+    right: 0;
+    top: -8px;
+    display: block;
+    width: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#pageDiv{
+    margin-top: 10px;
+    text-align: right;
+}

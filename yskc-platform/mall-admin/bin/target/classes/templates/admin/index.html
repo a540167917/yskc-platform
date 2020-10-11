@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <script src="/js/jquery-1.9.1.min.js"></script>
+    <script src="/js/jquery.validate-1.17.0.min.js"></script>
+    <script src="/js/jquery.validate-1.17.0-messages_zh.js"></script>
+
+    <link href="/plug/bootstrap-4.1.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/plug/bootstrap-4.1.3/plug/checkbox/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/plug/bootstrap-4.1.3/plug/checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet" type="text/css">
+
+    <link href="/plug/layui-v2.4.3/css/layui.css" rel="stylesheet" type="text/css">
+    <script src="/plug/layui-v2.4.3/layui.js"></script>
+    <link href="/plug/weui-1.1.3/weui.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/admin/index.css" rel="stylesheet" type="text/css">
+    <script src="/js/admin/index.js"></script>
+    <script src="/js/admin/webload.js"></script>
+    <script src="/js/admin/dialogs.js"></script>
+    </head>
+<body>
+<div class="layui-side layui-side-menu">
+    <div class="layui-side-scroll">
+        <div class="layui-logo" lay-href="home/console.html">
+            <span>新往来</span>
+        </div>
+
+        <ul id="daohangList" class="layui-nav layui-nav-tree" lay-filter="test">
+            <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;">系统管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:loadPage('/adm/conts/user/list');">用户管理</a></dd>
+                    <dd><a href="javascript:loadPage('/adm/conts/param/list');">参数管理</a></dd>
+                    <dd><a href="javascript:loadPage('/adm/conts/permission/list');">权限管理</a></dd>
+                    <dd><a href="javascript:loadPage('/adm/conts/role/list');">角色管理</a></dd>
+                    <dd><a href="javascript:loadPage('/adm/conts/file/list');">文件管理</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">业务管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:loadPage('/adm/conts/fenlei/list');">分类管理</a></dd>
+                    <dd><a href="javascript:loadPage('/adm/conts/timu/list');">题目管理</a></dd>
+                    <dd><a href="javascript:loadPage('/adm/conts/shijuan/list');">试卷管理</a></dd>
+                    <!--<dd><a href="javascript:loadPage('/adm/conts/device/list');">专辑管理</a></dd>-->
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">店铺管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:loadPage('/adm/stort/merchant/list');">商家列表</a></dd>
+                    <dd><a href="javascript:loadPage('/adm/classify/merchant/list');">商家分类</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">商品管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:loadPage('/adm/merchandise/merchant/list');">商品列表</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">订单管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:loadPage('/adm/order/merchant/orderFormlist');">订单列表</a></dd>
+                    <dd><a href="javascript:loadPage('/adm/order/merchant/orderCentrelist');">订单中心</a></dd>
+                    <dd><a href="javascript:loadPage('/adm/order/merchant/orderParticularlist');">订单详情</a></dd>
+                    <dd><a href="javascript:loadPage('/adm/order/merchant/orderNewlist');">新订单</a></dd>
+                    <!--<dd><a href="javascript:loadPage('/adm/conts/device/list');">专辑管理</a></dd>-->
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">用户内容</a>
+                <dl class="layui-nav-child">
+                    <!--<dd><a href="javascript:loadPage('/adm/conts/courseware/list');">课件管理</a></dd>-->
+                    <!--<dd><a href="javascript:loadPage('/adm/conts/upfile/list');">文件管理</a></dd>-->
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">产品</a></li>
+            <li class="layui-nav-item"><a href="">大数据</a></li>
+
+            <li class="layui-nav-item">
+                <a href="javascript:loadPage('/adm/push/merchant/list');">店铺推送</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">客服在线</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:loadPage('/adm/merchandise/merchant/list');">服务客户</a></dd>
+                    <dd><a href="javascript:loadPage('/adm/merchandise/merchant/list');">联系平台服务</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:javascript:loadPage('/adm/business/merchant/list');">商家营业状态</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">商家会员制</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:loadPage('/adm/member/merchant/list');">会员平台</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="javascript:loadPage('/adm/appraise/merchant/list');">店铺评价</a></li>
+        </ul>
+    </div>
+</div>
+<div class="ruis-main">
+    <div class="layui-header">
+        <!-- 头部区域 -->
+        <ul class="layui-nav ruis-headers">
+            <!--<li class="layui-nav-item">
+                <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+                    <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+                </a>
+            </li>-->
+            <li class="layui-nav-item" onclick="refreshPage();">
+                <div class="iconbtn"><i class="layui-icon layui-icon-refresh-3"></i></div>
+            </li>
+
+            <li class="layui-nav-item" style="position: relative">
+                <span class="layui-icon layui-icon-search ruis-searchi" onclick="searchFun()"></span>
+                <input id="searchText" class="layui-input ruis-searchtxt" placeholder="搜索">
+            </li>
+        </ul>
+        <ul class="layui-nav ruis-headers layui-layout-right" lay-filter="" style="margin-right: 20px;">
+
+            <li class="layui-nav-item" onclick="clearCache()">
+                <div class="iconbtn"><i class="layui-icon layui-icon-fonts-clear"></i>清除缓存</div>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" th:text="${lguser.nick}">解决方案</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="">修改密码</a></dd>
+                    <!--<dd><a href="">后台模版</a></dd>-->
+                    <dd><a href="/logout">退出</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <div id="mainContent">123</div>
+</div>
+</body>
+</html>
