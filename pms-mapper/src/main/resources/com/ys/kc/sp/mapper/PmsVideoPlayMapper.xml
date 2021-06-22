@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.kc.sp.mapper.PmsVideoPlayMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ys.kc.sp.entity.PmsVideoPlay">
+        <id column="id" property="id" />
+        <result column="user_account" property="userAccount" />
+        <result column="video_content" property="videoContent" />
+        <result column="video_check_schedule" property="videoCheckSchedule" />
+        <result column="video_check_defeated_cause" property="videoCheckDefeatedCause" />
+        <result column="apply_check_time" property="applyCheckTime" />
+    </resultMap>
+
+</mapper>

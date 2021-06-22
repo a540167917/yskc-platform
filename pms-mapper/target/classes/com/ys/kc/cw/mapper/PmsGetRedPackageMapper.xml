@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.kc.cw.mapper.PmsGetRedPackageMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ys.kc.cw.entity.PmsGetRedPackage">
+        <id column="id" property="id" />
+        <result column="user_account" property="userAccount" />
+        <result column="red_package_number" property="redPackageNumber" />
+        <result column="red_package_total" property="redPackageTotal" />
+        <result column="red_package_residue" property="redPackageResidue" />
+        <result column="red_package_total_money" property="redPackageTotalMoney" />
+        <result column="remaining_time" property="remainingTime" />
+        <result column="remaining_balance" property="remainingBalance" />
+    </resultMap>
+
+</mapper>

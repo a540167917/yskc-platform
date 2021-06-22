@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.kc.lt.mapper.PmsChatControlRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ys.kc.lt.entity.PmsChatControlRecord">
+        <id column="id" property="id" />
+        <result column="user_account" property="userAccount" />
+        <result column="chat_illegal" property="chatIllegal" />
+        <result column="chat_violations" property="chatViolations" />
+        <result column="account_apply_time" property="accountApplyTime" />
+        <result column="chat_state" property="chatState" />
+    </resultMap>
+
+</mapper>

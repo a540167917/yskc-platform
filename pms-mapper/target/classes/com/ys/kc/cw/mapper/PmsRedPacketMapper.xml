@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.kc.cw.mapper.PmsRedPacketMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ys.kc.cw.entity.PmsRedPacket">
+        <id column="id" property="id" />
+        <result column="user_account" property="userAccount" />
+        <result column="serial_number" property="serialNumber" />
+        <result column="red_bag_type" property="redBagType" />
+        <result column="red_bag_money" property="redBagMoney" />
+        <result column="efficacious_time" property="efficaciousTime" />
+        <result column="creation_time" property="creationTime" />
+    </resultMap>
+
+</mapper>

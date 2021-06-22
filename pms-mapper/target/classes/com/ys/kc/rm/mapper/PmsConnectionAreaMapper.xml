@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.kc.rm.mapper.PmsConnectionAreaMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ys.kc.rm.entity.PmsConnectionArea">
+        <id column="id" property="id" />
+        <result column="user_account" property="userAccount" />
+        <result column="illegal" property="illegal" />
+        <result column="warn_count" property="warnCount" />
+        <result column="illegal_context" property="illegalContext" />
+        <result column="illegal_count" property="illegalCount" />
+        <result column="operation" property="operation" />
+        <result column="operator" property="operator" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+</mapper>

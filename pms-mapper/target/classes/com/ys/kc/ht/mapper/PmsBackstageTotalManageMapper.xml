@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.kc.ht.mapper.PmsBackstageTotalManageMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ys.kc.ht.entity.PmsBackstageTotalManage">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="warn_count" property="warnCount" />
+        <result column="content_id" property="contentId" />
+    </resultMap>
+    <select id="selectSum" resultType="java.lang.Integer" parameterType = "java.lang.String">
+       select sum(warn_count) from pms_backstage_total_manage where account = ${account}
+    </select>
+
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.kc.yh.mapper.PmsUserAdministrationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ys.kc.yh.entity.PmsUserAdministration">
+        <id column="id" property="id" />
+        <result column="account" property="account" />
+        <result column="type" property="type" />
+        <result column="content" property="content" />
+        <result column="apply_time" property="applyTime" />
+        <result column="handle_status" property="handleStatus" />
+    </resultMap>
+
+</mapper>

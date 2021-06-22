@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://code.alibabatech.com/schema/dubbo
+            http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 应用配置，不要与提供方相同 -->
+    <dubbo:application name="pms-controller"/>
+    <!-- 消费方用什么协议获取服务（用dubbo协议在20880端口暴露服务） -->
+<!--    <dubbo:protocol port="20880"/>-->
+    <!-- 注册中心配置，使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry id="pms-impl-provider" address="zookeeper://127.0.0.1:2181" timeout="60000"/>
+    <!-- 使用注解方式创建远程服务代理-->
+<!--    <dubbo:annotation package="com.ys.kc.cw.controller"/>-->
+    <!--声明服务引用，与服务声明接口类型一致-->
+    <!--  财务管理  -->
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.cw.service.PmsFinancialManagementService" id="pmsFinancialManagementService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.cw.service.PmsGetRedPackageService" id="pmsGetRedPackageService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.cw.service.PmsIncomeRecordsService" id="pmsIncomeRecordsService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.cw.service.PmsRechargeRecordService" id="pmsRechargeRecordService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.cw.service.PmsRedPacketService" id="pmsRedPacketService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.cw.service.PmsSupportRecordService" id="pmsSupportRecordService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.cw.service.PmsWalletManagementService" id="pmsWalletManagementService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.cw.service.PmsWithdrawCheckManagementService" id="pmsWithdrawCheckManagementService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.cw.service.PmsWithdrawDepositRecordService" id="pmsWithdrawDepositRecordService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.cw.service.PmsWithdrawRecordService" id="pmsWithdrawRecordService"/>
+    <!--聊天管理-->
+    <dubbo:reference registry="pms-impl-provider" interface="com.ys.kc.lt.service.PmsChatControlRecordService" id="pmsChatControlRecordService"/>
+    <dubbo:reference registry="pms-impl-provider" interface="com.ys.kc.lt.service.PmsChatRecordService" id="pmsChatRecordService"/>
+    <dubbo:reference registry="pms-impl-provider" interface="com.ys.kc.lt.service.PmsGroupManagementService" id="pmsGroupManagementService"/>
+    <!--人脉商圈-->
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.rm.service.PmsConnectionAreaService" id="pmsConnectionAreaService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.rm.service.PmsFriendCircleService" id="pmsFriendCircleService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.rm.service.PmsTradeAreaService" id="pmsTradeAreaService"/>
+    <!-- 视频管理 -->
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.sp.service.PmsBreakingRecordsService" id="pmsBreakingRecordsService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.sp.service.PmsDemandRecordsService" id="pmsDemandRecordsService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.sp.service.PmsLiveRecordService" id="pmsLiveRecordService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.sp.service.PmsRecordedRecordService" id="pmsRecordedRecordService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.sp.service.PmsVideoControlRecordService" id="pmsVideoControlRecordService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.sp.service.PmsVideoPlayService" id="pmsVideoPlayService"/>
+    <!-- 消息管理  -->
+     <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.xx.service.PmsHistoryPushService" id="pmsHistoryPushService"/>
+     <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.xx.service.PmsMessageManagementService" id="pmsMessageManagementService"/>
+     <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.xx.service.PmsOutsideEvenLinkService" id="pmsOutsideEvenLinkService"/>
+    <!-- 系统管理  -->
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.xt.service.PmsAdmininistarationModularityService" id="pmsAdmininistarationModularityService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.xt.service.PmsSystemAdministrationService" id="pmsSystemAdministrationService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.xt.service.PmsSystemModularityService" id="pmsSystemModularityService"/>
+    <!-- 用户管理  -->
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.yh.service.PmsUserAdministrationService" id="pmsUserAdministrationService"/>
+    <!-- 设置管理  -->
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.sz.service.PmsLoginService" id="pmsLoginService"/>
+    <!-- 后台总管  -->
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.ht.service.PmsBackstageTotalManageService" id="pmsBackstageTotalManageService"/>
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.ht.service.PmsContentService" id="pmsContentService"/>
+    <!-- 后台登录  -->
+    <dubbo:reference  registry="pms-impl-provider" interface="com.ys.kc.dl.service.PmsAdminService" id="pmsAdminService"/>
+</beans>

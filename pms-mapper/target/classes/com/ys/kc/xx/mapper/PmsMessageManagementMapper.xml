@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.kc.xx.mapper.PmsMessageManagementMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ys.kc.xx.entity.PmsMessageManagement">
+        <id column="id" property="id" />
+        <result column="connect_title" property="connectTitle" />
+        <result column="message_mold" property="messageMold" />
+        <result column="day_click_quantity" property="dayClickQuantity" />
+        <result column="weeks_click_quantity" property="weeksClickQuantity" />
+        <result column="month_click_quantity" property="monthClickQuantity" />
+        <result column="total_click_quantity" property="totalClickQuantity" />
+    </resultMap>
+
+</mapper>

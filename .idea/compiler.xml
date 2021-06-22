@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="pms-controller" />
+        <module name="pms-impl-provider" />
+        <module name="pms-mapper" />
+        <module name="pms-common" />
+        <module name="pms-service" />
+        <module name="pms-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="main-service" target="1.8" />
+      <module name="mall-admin" target="1.8" />
+      <module name="mall-common" target="1.8" />
+      <module name="mall-common (1)" target="1.8" />
+      <module name="mall-core" target="1.8" />
+      <module name="mall-portal" target="1.8" />
+      <module name="pms-finance" target="1.8" />
+      <module name="pms-video" target="1.8" />
+      <module name="pmsfinancial" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

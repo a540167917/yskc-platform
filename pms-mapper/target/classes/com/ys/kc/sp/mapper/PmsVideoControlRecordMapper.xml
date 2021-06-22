@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.kc.sp.mapper.PmsVideoControlRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ys.kc.sp.entity.PmsVideoControlRecord">
+        <id column="id" property="id" />
+        <result column="user_account" property="userAccount" />
+        <result column="video_illegal" property="videoIllegal" />
+        <result column="video_violations" property="videoViolations" />
+        <result column="account_aooly_time" property="accountAoolyTime" />
+        <result column="video_state" property="videoState" />
+    </resultMap>
+
+</mapper>

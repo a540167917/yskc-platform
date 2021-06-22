@@ -1,0 +1,14 @@
+server:
+  address: 127.0.0.1
+  port: 8803
+spring:
+  application:
+    name: pms-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: aB123!45C
+    url: jdbc:mysql://localhost:3306/db_ys_kc?serverTimezone=UTC
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.stdOutImpl
